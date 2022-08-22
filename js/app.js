@@ -25,6 +25,13 @@ function selectedPlayer(playerId,buttonId){
 
 }
 
+function getInput(inputFieldId){
+    const inputString = document.getElementById(inputFieldId).value;
+    const inputValue = parseFloat(inputString);
+    return inputValue;
+    
+}
+
 
 
 selectBtnPlayerOne.addEventListener('click',function(){
@@ -56,9 +63,7 @@ selectBtnPlayerSix.addEventListener('click',function(){
 // Calculation Part-2
 
 document.getElementById('calculate-with-money').addEventListener('click',function(){
-    const inputPerPlayerAmount = document.getElementById('input-per-player-amount');
-    const inPutPerPlayerString = inputPerPlayerAmount.value;
-    const inputPerPlayer = parseFloat(inPutPerPlayerString);
+    const inputPerPlayer = getInput('input-per-player-amount');
     if(isNaN(inputPerPlayer)){
         alert('Please enter a valid number');
         return;
@@ -71,33 +76,25 @@ document.getElementById('calculate-with-money').addEventListener('click',functio
 
 
 document.getElementById('calculate-total').addEventListener('click',function(){
-    const managerInputField = document.getElementById('manager-input-field');
-    const managerInputString = managerInputField.value;
-    const managerInputTaka = parseFloat(managerInputString);
    
-    
-    const coachInputField = document.getElementById('coach-input-field');
-    const coachInputString = coachInputField.value;
-    const coachInputTaka = parseFloat(coachInputString);
-    
-    if(isNaN(coachInputTaka) || isNaN(managerInputTaka)){
+    const managerInputTaka = getInput('manager-input-field');
+    const coachInputTaka = getInput('coach-input-field');
+
+    if(isNaN(managerInputTaka)|| isNaN(coachInputTaka)){
         alert('Please enter a valid number');
         return;
     }
     
 
-
     const playersDealString = document.getElementById('player-expenses').innerText
     const playersDeal  = parseFloat(playersDealString);
     if(isNaN(playersDeal)){
-        alert('Please ,Calculate Player Expenses First');
+        alert('Please, Calculate Player Expenses First');
         return;
     }
     
 
     const totalTaka = managerInputTaka + coachInputTaka + playersDeal;
-    
-
     const totalAmount = document.getElementById('total-amount');
     totalAmount.innerText = totalTaka;
 })
