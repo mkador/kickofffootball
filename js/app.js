@@ -22,6 +22,7 @@ function selectedPlayer(playerId,buttonId){
     }
     else{
         alert('You are allowed to select five Players');
+        countSelectedPlayer = 5;
         return;
     }
 
